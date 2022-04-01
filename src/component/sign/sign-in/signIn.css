@@ -1,0 +1,131 @@
+.bg-dark {
+    background-color: #12002b;
+    display: flex;
+    justify-content: center;
+  }
+
+.sign-in-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+  }
+  .sign-in-button:hover{
+    transition-duration: 400ms;
+    background-color: #087750;
+    
+  }
+  
+  .sign-in-content {
+    border-radius: 25px;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    padding: 2rem;
+  }
+  
+  .sign-in-icon {
+    font-size: 5rem;
+  }
+  
+  .input-remember {
+      
+    display: flex;
+    font-size: 20px;
+  }
+  
+  .input-remember label {
+    margin-left: 0.25rem;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  
+  .input-wrapper label {
+    font-weight: bold;
+  }
+  
+  .input-wrapper input {
+    padding: 5px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+  }
+
+@media (min-width: 920px) {
+
+    .sign-in-title{
+        font-size: 2.5rem;
+    }
+    
+
+    .bg-dark {
+        height: 980px;
+      }
+
+    .sign-in-button {
+        font-size: 1.8rem;
+        height: 70px;
+        margin-top: 50px;
+      }
+      
+      .sign-in-content {
+        background-color: white;
+        width: 470px;
+        height: 620px;
+        margin-top: 7rem;
+      }
+      
+      .sign-in-icon {
+        font-size: 5rem;
+      }
+      
+      .input-remember {
+        display: flex;
+        
+      }
+      .input-remember input{
+          margin-left:-220px ;
+          width: 100%;
+          height: 1.2rem;
+      }
+      
+      
+      .input-remember label {
+        margin-left: -200px;
+      }
+      
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      
+      .input-wrapper label {
+        font-weight: bold;
+        font-size: 1.6rem;
+      }
+      
+      .input-wrapper input {
+        height: 50px;
+        padding: 5px;
+        font-size: 1.8rem;
+      }
+  
+  
+  
+}
+  
+  
