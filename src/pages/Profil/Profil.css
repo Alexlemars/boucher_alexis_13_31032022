@@ -61,6 +61,8 @@
     cursor: pointer;
     border: none;
   }
+
+
   
   
   .transaction-button {
@@ -78,6 +80,11 @@
     height: 70px;
     
   }
+  .transaction-button:hover ,.edit-button:hover {
+    transition-duration: 400ms;
+    background-color: #087750;
+  }
+
   
   @media (min-width: 720px) {
     .account {

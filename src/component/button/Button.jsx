@@ -1,14 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-export default function Button({ path, className, text }) {
+export default function Button({ type, className, value }) {
   return (
     <div>
-
-          <Link to={path} >
-              <button className={className}>{text}</button> 
-          </Link>
-        
+          <input className={className} type={type} value={value}></input>
     </div>
   )
 }

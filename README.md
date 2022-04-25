@@ -16,8 +16,6 @@
 
 `$ npm install react-router-dom`
 
-- [Recharts](https://recharts.org/en-US)
-
 
 `$ npm install axios`  
 

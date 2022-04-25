@@ -31,9 +31,9 @@ export default function Register() {
       
 
       <Button
-                path="/signIn"
+                type="submit"
                 className="sign-in-button"
-                text="Sign up"
+                value="Sign up"
             />
 
     </form>
