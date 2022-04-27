@@ -1,9 +1,6 @@
 import React from 'react'
 import "./Profil.css"
 
-import Button from '../../component/button/Button'
-
-
 export default function Profil() {
   return (
     <div>
