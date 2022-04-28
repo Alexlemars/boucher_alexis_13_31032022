@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { API_URL } from './API-URL';
-import authHeader from './auth-header';
+import { API_URL } from './API';
+import authHeader from './auth-cookie';
 
 class UserService {
     async getUserProfile() {

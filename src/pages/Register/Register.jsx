@@ -12,20 +12,20 @@ export default function Register() {
     <form>
 
     <div className="input-wrapper">
-        <label for="Email">Email</label
+        <label htmlFor="Email">Email</label
         ><input type="text" id="Email" />
       </div>
     <div className="input-wrapper">
-        <label for="Nom">Nom</label
+        <label htmlFor="Nom">Nom</label
         ><input type="text" id="Nom" />
       </div>
     <div className="input-wrapper">
-        <label for="Prénom">Prénom</label
+        <label htmlFor="Prénom">Prénom</label
         ><input type="text" id="Prénom" />
       </div>
       
       <div className="input-wrapper">
-        <label for="password">Password</label
+        <label htmlFor="password">Password</label
         ><input type="password" id="password" />
       </div>
       

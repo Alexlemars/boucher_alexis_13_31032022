@@ -40,7 +40,6 @@ const authUser = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                isLoaded: false,
                 token: payload.token,
                 firstName: payload.firstName,
                 lastName: payload.lastName,
@@ -53,7 +52,6 @@ const authUser = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false,
-                isLoaded: false,
                 token: null,
                 firstName: '',
                 lastName: '',
@@ -65,14 +63,12 @@ const authUser = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                isLoaded: false,
             };
 
         case GET_USER_PROFILE_SUCCESS:
             return {
                 ...state,
                 isLoggedIn: true,
-                isLoaded: true,
                 firstName: payload.firstName,
                 lastName: payload.lastName,
                 id: payload.id,
@@ -91,7 +87,6 @@ const authUser = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                isLoaded: true,
                 firstName: payload.firstName,
                 lastName: payload.lastName,
             };

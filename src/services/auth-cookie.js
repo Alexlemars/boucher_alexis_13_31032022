@@ -1,4 +1,4 @@
-import { getCookie } from './useCookies';
+import { getCookie } from './use.cookie';
 
 export default function authHeader() {
     const token = getCookie('signin-token');

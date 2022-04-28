@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { API_URL } from './API-URL';
-import { deleteCookie, getCookie, setCookie } from './useCookies';
+import { API_URL } from './API';
+import { deleteCookie, getCookie, setCookie } from './use.cookie';
 
 class AuthService {
     register(firstName, lastName, email, password) {
