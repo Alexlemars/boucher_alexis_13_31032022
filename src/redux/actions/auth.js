@@ -2,15 +2,14 @@ import AuthService from '../../services/auth.service';
 import { getUserInfos } from './profile';
 
 
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAIL = 'REGISTER_FAIL';
+const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+const REGISTER_FAIL = 'REGISTER_FAIL';
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAIL = 'LOGIN_FAIL';
+const LOGOUT = 'LOGOUT';
 
-export const LOGOUT = 'LOGOUT';
-
-export const SET_MESSAGE = 'SET_MESSAGE';
+const SET_MESSAGE = 'SET_MESSAGE';
 
 export const register = (firstName, lastName, email, password) => dispatch => {
     return AuthService.register(firstName, lastName, email, password).then(

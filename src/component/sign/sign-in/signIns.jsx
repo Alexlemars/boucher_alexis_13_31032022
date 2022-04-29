@@ -22,6 +22,9 @@ export default function SignIns() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.authUser);
+  const { message } = useSelector((state) => state.message);
+
+  
 
   const dispatch = useDispatch();
 
@@ -40,6 +43,18 @@ export default function SignIns() {
       }
   }, []);
 
+  const [emailError, setEmailError] = useState('')
+
+  const validateEmail = (e) => {
+    var email = e.target.value
+  
+    if (isEmail(email)) {
+      setEmailError('Valid Email :)')
+    } else {
+      setEmailError('Enter valid Email!')
+    }
+  }
+
 
  
 
@@ -57,12 +72,16 @@ export default function SignIns() {
                 .catch((err) => {
                     console.log(err);
                 });
+                
         } 
+        
     };
 
     if (isLoggedIn) {
         return <Navigate to="/profile" />;
     }
+
+
 
 
   return (
@@ -82,10 +101,13 @@ export default function SignIns() {
               type="text"
               name="Username"
               id="username"
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => { 
+                setUserName(e.target.value)
+                
+              } }
               value={userName}
             />
-            <Error text="" />
+            <Error text={emailError} />
             <SignInput
               className="input-wrapper"
               label="Password"
@@ -93,10 +115,16 @@ export default function SignIns() {
               type="password"
               name="password"
               id="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+
+              }
+               }
+                  
               value={password}
+
             />
-            <Error text="" />
+            <Error text={message} />
             <div className="input-remember">
               <input
                 type="checkbox"
@@ -104,7 +132,7 @@ export default function SignIns() {
                 id="remember-me"
                 name="remember-me"
                 value={rememberMe}
-                onChange={(e)=> setRememberMe(e.target.value)}
+                onChange={(e)=> setRememberMe(e.target.value.checked)}
 
               />
               <label htmlFor="remember-me">Remember me </label>
