@@ -1,0 +1,14 @@
+.form{
+    display: flex;
+    justify-content: center;
+}
+.form-content{
+    border-radius: 25px;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+.input-wrapper{
+    color: black;
+}

@@ -12,6 +12,7 @@ export const getUserInfos = () => dispatch => {
         response => {
             dispatch({
                 type: GET_USER_PROFILE,
+                
             });
             
             dispatch({

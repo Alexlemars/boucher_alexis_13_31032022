@@ -1,45 +1,26 @@
 import React from 'react'
 import "./Register.css"
+import {  useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import SignUp from '../../component/sign/sign-up/sign-up';
 
-import Button from '../../component/button/Button'
+
+
+
+
 
 export default function Register() {
+
+  const { isLoggedIn } = useSelector(state => state.authUser);
+
+  if (isLoggedIn) {
+    return <Navigate to="/profile" />
+  }
+  
   return (
-    <div><div>
-    <main className="main bg-dark">
-  <section className="sign-up-content">
-    <h1 className='sign-in-title'>Sign up</h1>
-    <form>
-
-    <div className="input-wrapper">
-        <label htmlFor="Email">Email</label
-        ><input type="text" id="Email" />
+    <div>
+      <SignUp/>
       </div>
-    <div className="input-wrapper">
-        <label htmlFor="Nom">Nom</label
-        ><input type="text" id="Nom" />
-      </div>
-    <div className="input-wrapper">
-        <label htmlFor="Prénom">Prénom</label
-        ><input type="text" id="Prénom" />
-      </div>
-      
-      <div className="input-wrapper">
-        <label htmlFor="password">Password</label
-        ><input type="password" id="password" />
-      </div>
-      
-
-      <Button
-                type="submit"
-                className="sign-in-button"
-                value="Sign up"
-            />
-
-    </form>
-  </section>
-</main>
-
-</div></div>
+    
   )
 }

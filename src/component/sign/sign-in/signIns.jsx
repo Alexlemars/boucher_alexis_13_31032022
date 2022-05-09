@@ -5,12 +5,12 @@ import "./signIn.css";
 import { login } from '../../../redux/actions/auth';
 
 
-import { isEmail, isEmpty } from 'validator';
+import { isEmail } from 'validator';
 
 
 import Button from "../../button/Button";
 import SignInput from "../sign-input/sign-input";
-import Error from "../error/error";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -21,8 +21,16 @@ export default function SignIns() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  const [isEmailTrue, setisEmailTrue] = useState(false);
+  const [isPasswordTrue, setPasswordTrue] = useState(false);
+
+  const [messageErrorRequired, setmessageErrorRequired] = useState("");
+  const [messageErrorEmail, setmessageErrorEmail] = useState("");
+
+  
+
   const { isLoggedIn } = useSelector((state) => state.authUser);
-  const { message } = useSelector((state) => state.message);
+
 
   
 
@@ -36,50 +44,79 @@ export default function SignIns() {
           setUserName(memoUserEmail);
           setPassword(memoUserPassword);
           setRememberMe(true);
+          setisEmailTrue(true)
+          setPasswordTrue(true)
+          
       } else {
           setUserName('');
           setPassword('');
           setRememberMe(false);
+          setisEmailTrue(false)
+          setPasswordTrue(false)
       }
+      console.log(memoUserEmail);
   }, []);
 
-  const [emailError, setEmailError] = useState('')
-
-  const validateEmail = (e) => {
-    var email = e.target.value
   
-    if (isEmail(email)) {
-      setEmailError('Valid Email :)')
-    } else {
-      setEmailError('Enter valid Email!')
+
+  const onChangeUsername = e => {
+    const { value } = e.target;
+    setUserName(value);
+    if (isEmail(value)){
+      setisEmailTrue(true)
     }
-  }
+    else{
+      setisEmailTrue(false)
+    }
+};
 
-
+const onChangePassword = e => {
+    const {value} = e.target;
+    setPassword(value);
+    if (value.length > 0){
+      setPasswordTrue(true)
+    }else{
+      setPasswordTrue(false)
+    }
+};
  
-
 
   const handleLogin = (e) => {
     e.preventDefault();
-    let is_mounted = true;
+    setmessageErrorRequired("")
+    setmessageErrorEmail("")
+        if (isEmailTrue && isPasswordTrue) {
 
-        if (is_mounted) {
             dispatch(login(userName, password, rememberMe))
                 .then(() => {
                     window.location.reload();
-                    return <Navigate to="/profile" />;
+                    return <Navigate to="/profile" />
+                    
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+                return function cleanup() {
+                  setisEmailTrue(false);
+                  setPasswordTrue(false);
+                };
                 
-        } 
+        } else if (!isEmailTrue ){
+          setmessageErrorEmail("Invalid email format")
+        } else if (!isPasswordTrue){
+          setmessageErrorRequired("This field is required")
+        }
         
+      
     };
+
+
+
 
     if (isLoggedIn) {
         return <Navigate to="/profile" />;
     }
+    
 
 
 
@@ -101,13 +138,11 @@ export default function SignIns() {
               type="text"
               name="Username"
               id="username"
-              onChange={(e) => { 
-                setUserName(e.target.value)
-                
-              } }
+              onChange={onChangeUsername}
               value={userName}
+              validations={messageErrorEmail}
             />
-            <Error text={emailError} />
+            
             <SignInput
               className="input-wrapper"
               label="Password"
@@ -115,16 +150,11 @@ export default function SignIns() {
               type="password"
               name="password"
               id="password"
-              onChange={(e) => {
-                setPassword(e.target.value)
-
-              }
-               }
-                  
+              onChange={onChangePassword}
               value={password}
+              validations={messageErrorRequired}
 
             />
-            <Error text={message} />
             <div className="input-remember">
               <input
                 type="checkbox"
@@ -132,7 +162,7 @@ export default function SignIns() {
                 id="remember-me"
                 name="remember-me"
                 value={rememberMe}
-                onChange={(e)=> setRememberMe(e.target.value.checked)}
+                onChange={(e)=> setRememberMe(e.currentTarget.checked)}
 
               />
               <label htmlFor="remember-me">Remember me </label>

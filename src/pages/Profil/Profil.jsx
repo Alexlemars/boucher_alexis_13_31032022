@@ -1,46 +1,55 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./Profil.css"
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import EditProfil from '../../component/sign/EditProfile/EditProfile';
+import Acount from '../../component/account/Acount';
+
 
 export default function Profil() {
+
+  const { isLoggedIn } = useSelector(state => state.authUser);
+  const currentUser = useSelector(state => state.authUser);
+
+  const {firstName} = currentUser
+  const {lastName} = currentUser
+
+  const [showEditUserInfos, setShowEditUserInfos] = useState(false);
+
+    const toggleShowEdition = () => {
+        setShowEditUserInfos(!showEditUserInfos);
+    };
+ 
+ 
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+} else {
   return (
     <div>
-        <main className="main bg-dark">
+        <main className="main  bg-dark bg-height">
+
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+      <h1>Welcome back<br />{firstName} {lastName} </h1>
+        {showEditUserInfos ? (
+          <div>
+          <EditProfil toggle={()=> toggleShowEdition()} />
+          
+          </div>
+        ) : (
+          <div>
+          <button onClick={()=> toggleShowEdition()} className="edit-button">Edit Name</button>
+          
+          </div>
+
+        ) }
+        <Acount/>
+        
+        
       </div>
-      <h2 className="sr-only">Accounts</h2>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-          <p className="account-amount">$2,082.79</p>
-          <p className="account-amount-description">Available Balance</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-          <p className="account-amount">$10,928.42</p>
-          <p className="account-amount-description">Available Balance</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-          <p className="account-amount">$184.30</p>
-          <p className="account-amount-description">Current Balance</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
+      
     </main>
     </div>
   )
+}
 }

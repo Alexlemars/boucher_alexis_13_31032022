@@ -7,7 +7,7 @@ import Feature from '../../component/feature/feature'
 export default function Homepage() {
 
   return (
-    <div>
+    <div className='home'>
         <Hero/>
         <Feature/>
     </div>

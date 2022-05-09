@@ -11,6 +11,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
 
+  const currentUser = useSelector(state=>state.authUser)
+  const {firstName} = currentUser
+
   const { isLoggedIn } = useSelector(state => state.authUser);
 
     const dispatch = useDispatch();
@@ -24,6 +27,7 @@ export default function Header() {
     <div className="main-nav-sign">
             <Link className="main-nav-item" to="/profile">
             <FontAwesomeIcon className='main-nav-item-icon'  icon={faUserCircle}></FontAwesomeIcon>
+            <span>{firstName}</span>
             </Link>
             <Link className="main-nav-item" to="/" onClick={signOut}>
                 <i className="fa fa-sign-out"></i>
