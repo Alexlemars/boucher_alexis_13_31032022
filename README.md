@@ -18,13 +18,13 @@
 
 - [Font-awesome](https://fontawesome.com/) 
 
-- [React-redux](https://github.com/axios/axios)
+- [React-redux](https://react-redux.js.org/)
 
-- [Redux](https://github.com/axios/axios)
+- [Redux](https://redux.js.org/)
 
-- [Redux-thunk](https://github.com/axios/axios)
+- [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 
-- [Validator](https://github.com/axios/axios)
+- [Validator](https://www.npmjs.com/package/validator)
 
 
 - Recommended text editor: [Visual Studio Code](https://code.visualstudio.com)
