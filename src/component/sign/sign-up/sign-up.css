@@ -1,8 +1,27 @@
 .sign-up-content {
-    border-radius: 25px;
-    background-color: white;
-    width: 600px;
-    margin: 0 auto;
-    margin-top: 2rem;
-    padding: 2rem;
+  border-radius: 25px;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  height: 500px;
+}
+
+
+  @media (min-width: 920px) {
+    .sign-up-content {
+      width: 600px;
+      margin: 0 auto;
+      margin-top: 2rem;
+      padding: 2rem;
+      height: 780px;
+    }
+  }
+  @media (max-width: 400px) {
+    .sign-up-content {
+      width: 200px;
+      margin-top: 1.50rem;
+      height: 415px;
+    }
   }

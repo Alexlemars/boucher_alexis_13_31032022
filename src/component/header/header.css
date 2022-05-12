@@ -59,8 +59,7 @@
     font-size: 25px;
     text-decoration: none;
     margin-right: 1rem;
-    width: 190px;
-    height: 70px;
+
   }
   
   .main-nav-item:hover {
@@ -84,4 +83,38 @@
   .main-nav-item-icon{
     width: 40px;
     height: 40px;
+  }
+
+  @media (max-width: 920px) {
+
+    
+    .main-nav-item-icon{
+      width: 30px;
+      height: 30px;
+    }
+    .main-nav-sign{
+      font-size: 14px;
+
+    }
+    
+    .main-nav-item , .main-nav-item p{
+      font-size: 14px;
+    }
+    .main-nav-logo {
+      width: 250px;
+    }
+  }
+  @media (max-width: 420px) {
+    .main-nav-item-icon{
+      width: 20px;
+      height: 20px;
+    }
+    .main-nav-sign{
+      font-size: 10px;
+
+    }
+    .main-nav-item p{
+      font-size: 10px;
+    }
+
   }
