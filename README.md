@@ -14,18 +14,20 @@
 
 - [React-router-dom](https://reactrouter.com/web/guides/quick-start) 
 
-`$ npm install react-router-dom`
+- [Axios](https://github.com/axios/axios)
 
+- [Font-awesome](https://fontawesome.com/) 
 
-`$ npm install axios`  
+- [React-redux](https://github.com/axios/axios)
 
-- [Prop-types](https://www.npmjs.com/package/prop-types)  
+- [Redux](https://github.com/axios/axios)
 
-`$ npm i prop-types`
+- [Redux-thunk](https://github.com/axios/axios)
+
+- [Validator](https://github.com/axios/axios)
+
 
 - Recommended text editor: [Visual Studio Code](https://code.visualstudio.com)
-
-
 
 ## Installing and launching Back-End
 
@@ -47,7 +49,7 @@
 
 ## Installing and launching Front-End
 
-1. Clone the repository of SportSee front-end:   
+1. Clone the repository of Argent Bank front-end:   
 
 `git clone https://github.com/Alexlemars/boucher_alexis_13_31032022.git`
 
@@ -65,7 +67,7 @@
 
 
 
-4. Front-end is now rendered at URL `http://localhost:3001`.
+4. Front-end is now rendered at URL `http://localhost:3000`.
 
 
 5. URL availables :   

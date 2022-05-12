@@ -1,0 +1,300 @@
+swagger: '2.0'
+info:
+  description: API endpoints for phase two of Argent Bank project.
+  version: 1.0.0
+  title: Argent Bank API Docs
+  termsOfService: http://swagger.io/terms/
+host: localhost:3001
+basePath: /api/v1
+tags:
+  - name: Transactions
+    description: Everything about user's transactions
+  - name: Transaction
+    description: Everything about a transaction
+  - name: Categories
+    description: All transactions categories
+schemes:
+  - https
+  - http
+paths:
+  /user/profile/{accountId}:
+    get:
+      tags:
+        - Transactions
+      summary: User's transactions of current month
+      description: Get user's transactions
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Autorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          description: Account ID
+          required: true
+          type: string
+        - name: Dates
+          in: body
+          description: Start and end of transactions to dispaly
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionsDate'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ResponseTransactions'
+        '400':
+          description: Invalid values
+        '500':
+          description: Internal Server Error
+      security:
+        - Bearer: []
+  /user/categories:
+    get:
+      tags:
+        - Categories
+      summary: Transaction categories
+      description: Get transactions categories
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Autorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ResponseCategories'
+        '400':
+          description: Invalid values
+        '500':
+          description: Internal Server Error
+      security:
+        - Bearer: []
+  /user/{transactionId}:
+    get:
+      tags:
+        - Transaction
+      summary: Transaction details
+      description: Get transaction details
+      operationId: getTransactionId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Autorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: Transaction ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ResponseDetails'
+        '400':
+          description: Invalid values
+        '500':
+          description: Internal Server Error
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - Transaction
+      summary: Update transaction's details
+      description: Update transaction's details
+      operationId: upDateTransactionId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Autorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: Transaction ID
+          required: true
+          type: string
+        - name: Details
+          in: body
+          description: Update transaction's category
+          required: true
+          schema:
+            $ref: '#/definitions/EditableDetails'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ResponseDetails'
+        '400':
+          description: Invalid values
+        '500':
+          description: Internal Server Error
+      security:
+        - Bearer: []
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  ResponseTransactions:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        example: 200
+      message:
+        type: string
+        format: string
+        example: transactions successfully recovered
+      body:
+        type: array
+        items:
+          $ref: '#/definitions/Informations'
+    xml:
+      name: Transactions
+  ResponseDetails:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        example: 200
+      message:
+        type: string
+        format: string
+        example: details successfully recovered
+      schema:
+        $ref: '#/definitions/Details'
+    xml:
+      name: Details
+  ResponseCategories:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        example: 200
+      message:
+        type: string
+        format: string
+        example: categories successfully recovered
+      schema:
+        $ref: '#/definitions/Categories'
+    xml:
+      name: Details
+  Informations:
+    type: object
+    properties:
+      transactionId:
+        type: string
+        description: transaction ID
+        example: uT20211105df8
+      date:
+        type: string
+        format: date-time
+        description: transaction date
+        example: '2022-06-20T12:57:19.005Z'
+      description:
+        type: string
+        description: transaction description
+        example: Marie Blachère Bakery & Café
+      amount:
+        type: integer
+        format: int64
+        description: transaction amount
+        example: 5
+      balance:
+        type: integer
+        format: int64
+        description: account balance after transaction
+        example: 2082.79
+    xml:
+      name: Transaction
+  Categories:
+    type: array
+    items:
+      $ref: '#/definitions/Category'
+    xml:
+      name: Categories
+  Details:
+    type: object
+    properties:
+      transactionId:
+        type: string
+        description: transaction ID
+        example: uT20211105df8
+      type:
+        type: string
+        description: transaction type
+        example: Electronic
+      category:
+        type: string
+        description: transaction category
+        example: Food
+      notes:
+        type: string
+        description: transaction notes
+        example: >-
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ligula lacus, eleifend ut porttitor in, viverra a elit...
+    xml:
+      name: Details
+  EditableDetails:
+    type: object
+    properties:
+      category:
+        type: string
+        description: transaction category
+      notes:
+        type: string
+        description: transaction notes
+    xml:
+      name: TransactionDetails
+  TransactionsDate:
+    type: object
+    properties:
+      from:
+        type: string
+        format: date
+        description: start date of transactions recovery (one month ago)
+        example: '2022-10-05'
+      to:
+        type: string
+        format: date
+        description: end date of transaction recovery (today)
+        example: '2022-11-05'
+    xml:
+      name: TransactionsDate
+  Category:
+    type: string
+    enum:
+      - Food
+      - Clothes
+      - Charges
+      - Fuel
+      - Supplies
+      - Equipment
+      - Other

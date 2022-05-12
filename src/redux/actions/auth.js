@@ -20,7 +20,7 @@ export const register = (firstName, lastName, email, password) => dispatch => {
 
             dispatch({
                 type: SET_MESSAGE,
-                payload: response.data.message,
+                payload: response.data.message
             });
 
             return Promise.resolve();
@@ -38,6 +38,7 @@ export const register = (firstName, lastName, email, password) => dispatch => {
             dispatch({
                 type: SET_MESSAGE,
                 payload: message,
+                 
             });
 
             return Promise.reject();

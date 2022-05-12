@@ -3,6 +3,7 @@ import "./sign-up.css"
 import SignInput from '../sign-input/sign-input'
 import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/actions/auth';
+import { useSelector } from 'react-redux';
 
 import Button from '../../button/Button'
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +29,8 @@ export default function SignUp() {
   const [messageErrorEmail, setmessageErrorEmail] = useState("");
   const [messageErrorFirstName, setmessageErrorFirstName] = useState("");
   const [messageErrorLastName, setmessageErrorLastName] = useState("");
+
+  const { message } = useSelector(state => state.message);
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -71,6 +74,13 @@ export default function SignUp() {
             setPasswordTrue(true)     
           }
     };
+
+    const messageError = ()=>{
+      if(message && message !== 200){
+        return <div className='errors-dangers'>{message}</div>,
+        console.log(message);
+      }
+    }
     
 
 
@@ -105,8 +115,11 @@ export default function SignUp() {
             setSucess(false)
             console.log('erreur');
         }
+        
 
     }
+
+    
 
   return (
     <div>
@@ -164,6 +177,8 @@ export default function SignUp() {
               value={password}
               validations={messageErrorRequired}  
             />
+
+{messageError()}
       
 
       <Button
